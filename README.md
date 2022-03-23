@@ -48,7 +48,7 @@ Please enagage with both me (@UpInYourVizness) and Zak (@ZaksViz) here and on Tw
     - jQuery requires knowledge of CSS!
     - jQuery and vanilla JS syntax are often both seen within the same functions
     - jQuery can be used with popular frameworks, e.g. React, Vue.js, Angular, but may conflict or overwrite their functionality - YMMV
-    - In and of itself, jQuery not reactive
+    - In and of itself, jQuery is not reactive, i.e.:
       - "When told - find, then do" vs "always listen, then respond"
       - vanilla JS listener events can still be used
       

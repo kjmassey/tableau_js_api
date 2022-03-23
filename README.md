@@ -27,6 +27,8 @@ Open functionality opportunities:
 
 Please enagage with both me (@UpInYourVizness) and Zak (@ZaksViz) here and on Twitter with any questions you may have! We're also available on the #DataDev and #TableauCoders channels on Slack!
 
+Tableau JavaScript API Reference: [Click here](https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm)
+
 -------------
 
 #### NOTES:

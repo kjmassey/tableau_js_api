@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+
+        <!-- FontAwesome -->
+        <script src="https://use.fontawesome.com/6da7a3a76f.js"></script>
+
+        <!-- Import Tableau JS API -->
+        <script
+            type="text/javascript"
+            src="https://public.tableau.com/javascripts/api/tableau-2.min.js"
+        ></script>
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS, then our script.js -->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+        <script
+        src="script.js"
+        type="text/javascript"
+        crossorigin="anonymous"
+    ></script>
+
+    <link href="./style.css" rel="stylesheet">
+
+
+
+        <title>Custom Tableau Portal</title>
+    </head>
+
+    <body>
+
+        <div id="navbar" class="d-flex align-items-center pl-3 text-white bg-primary">
+            <h4>My Tableau Portal</h4>
+        </div>
+
+        <div id="bodyContainer">
+            <div id="sidebar">
+                <h5 class="px-4 pt-4 pb-2">Choose a workbook:</h5>
+                <div
+                    class="px-4 py-2 wb-select"
+                    id="videoGames"
+                    onClick="getElemId(this.id); setActive(this.id)"
+                >
+                    Video Games
+                </div>
+                <div
+                    class="px-4 py-2 wb-select sidebar-dropdown"
+                    id="foodDrinksDogs"
+                    onClick="getElemId(this.id); setActive(this.id);toggleParamDivs(this.id)"
+                >
+                    Food, Drinks & Dogs
+                </div>
+
+                <div
+                    id="mapParams"
+                    class="filter-params-container pb-3"
+                >
+                    <div class="filter-param-title py-2 px-5">
+                        <span class="font-weight-bold">Parameters</h5>
+                    </div>
+                    <div class="form-group filter-param py-2 px-5 m-0">
+                      <select class="form-control form-control-sm" id="exampleFormControlSelect1" onchange="changeParameterText('Param_SelectedCity',this.value)">
+                        <option>Cincinnati</option>
+                        <option>Cleveland</option>
+                        <option selected>Columbus</option>
+                      </select>
+                    </div>
+                    <div
+                        class="filter-param py-2 px-5"
+                        onclick="toggleParamValue('Param_ZeroToOne_restaurants')"
+                    >
+                        Show/Hide Restaurants
+                    </div>
+                    <div
+                        class="filter-param py-2 px-5"
+                        onclick="toggleParamValue('Param_ZeroToOne_bars')"
+                    >
+                        Show/Hide Bars
+                    </div>
+                    <div
+                        class="filter-param py-2 px-5"
+                        onclick="toggleParamValue('Param_ZeroToOne_dogparks')"
+                    >
+                        Show/Hide Dog Parks
+                    </div>
+                    <div
+                        class="filter-param py-2 px-5"
+                        onclick="toggleParamValue('Param_ZeroToOne_total25k')"
+                    >
+                        Toggle Aggregation
+                    </div>
+                </div>
+                <div
+                    class="px-4 py-2 wb-select sidebar-dropdown"
+                    id="ohioCrime"
+                    onClick="getElemId(this.id); setActive(this.id); toggleParamDivs(this.id)"
+                >
+                    Ohio Crime
+                </div>
+                <div
+                id="crimeParams"
+                class="filter-params-container pb-3"
+            >
+                <div class="filter-param-title py-2 px-5">
+                    <span class="font-weight-bold">Parameters</h5>
+                </div>
+                <div class="form-group filter-param py-2 px-5 m-0">
+                  <select class="form-control form-control-sm"  onchange="changeParameterText('Param_CrimeType',this.value)">
+                    <option selected>All Crimes</option>
+                    <option>Arson</option>
+                    <option>Burglary</option>
+                    <option>Murder</option>
+                    <option>Property Crimes</option>
+                    <option>Rape</option>
+                    <option>Violent Crimes</option>
+                  </select>
+                </div>
+                <div class="filter-param-title py-2 px-5">
+                    <span class="font-weight-bold">Filters</h5>
+                </div>
+                <div class="form-group filter-param py-2 px-5 m-0">
+                    <select class="form-control form-control-sm" onchange="changeDashboardFilter('Report Year',this.value)">
+                      <option selected>2017</option>
+                      <option>2016</option>
+                      <option>2015</option>
+                      <option>2014</option>
+                      <option>2013</option>
+                    </select>
+                  </div>
+               
+            </div>
+            </div>
+            <div id="content" class="pt-4">
+                <div id="vizContainer" class="px-2">
+                    <div id="vizDiv"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+
+
+        <!-- <script type="text/javascript">
+        //     var viz;
+        //     var knownSize = false;
+        //     let vizParams = {};
+
+        //     var elems = {
+        //         foodDrinksDogs:
+        //             'https://10ax.online.tableau.com/t/kjmdev797388/views/FoodDrinksDoggosinOhio/FoodDrinksDogsinOhio?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link',
+        //         ohioCrime:
+        //             'https://10ax.online.tableau.com/t/kjmdev797388/views/OhioCrimebyCounty/OhioCrimebyCounty?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link',
+        //         videoGames:
+        //             'https://10ax.online.tableau.com/t/kjmdev797388/views/LetsPlayAGame/LetsPlayAGame?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link'
+        //     };
+
+        //     var activeId
+
+        //     function getElemId(id) {
+        //       if (activeId !== id) {
+        //       activeId = id
+        //         knownSize = false;
+
+        //         if (viz) {
+        //             viz.dispose();
+        //         }
+
+        //         let loadCount = 0;
+
+        //         let vizDiv = $('#vizDiv');
+
+        //         let url = elems[id];
+        //         let options = {
+        //             hideTabs: true,
+        //             onFirstVizSizeKnown: async () => {
+        //                 knownSize = true;
+        //             }
+        //         };
+
+        //         viz = new tableau.Viz(vizDiv, url, options);
+
+        //         if (loadCount < 1) {
+        //             $('iframe').first().detach().appendTo('#vizDiv');
+        //             $('#vizDiv iframe').first().attr('id', 'vizFrame');
+
+        //             loadCount += 1;
+        //         }
+
+        //         if (!knownSize) {
+        //             $('#vizFrame').css('min-height', '700px');
+        //             $('#vizFrame').css('max-width', '100%');
+        //         }
+        //     }
+        //   }
+
+        //     async function getParamValues() {
+        //         let paramObjs = viz.getWorkbook().getParametersAsync();
+
+        //         await paramObjs.then(function (paramObjs) {
+        //             for (var i = 0; i < paramObjs.length; i++) {
+        //                 try {
+        //                     var name = paramObjs[i].getName();
+        //                     var value = paramObjs[i].getCurrentValue();
+
+        //                     vizParams[name] = value.value;
+        //                 } catch (e) {
+        //                     console.log('-- error: ', e);
+        //                 }
+        //             }
+        //         });
+        //     }
+
+        //     async function toggleParamValue(param) {
+        //         await getParamValues();
+        //         let val = '0';
+
+        //         mainWorkbook = viz.getWorkbook();
+        //         console.log('--- current val: ', vizParams[param]);
+
+        //         if (vizParams[param] == 0) {
+        //             val = '1';
+        //         }
+
+        //         console.log('new val: ', val);
+        //         mainWorkbook.changeParameterValueAsync(param, val);
+        //     }
+
+        //     function changeParameterText(param,val) {
+        //       mainWorkbook = viz.getWorkbook()
+        //       mainWorkbook.changeParameterValueAsync(param,val) 
+        //     }
+
+        //     function setActive(id) {
+        //       console.log('--- id: ', id)
+              
+        //       $('.wb-select').each((index, el) => {
+        //         if (el.id !== id) {
+        //           $(el).removeClass('active');
+        //         }
+        //       });
+              
+        //       $(".sidebar-dropdown").each((index,el) => {
+        //         $(el).removeClass('active')
+        //       })
+
+        //       $(`#${id}`).addClass('active');
+
+        //       if($(el).hasClass('sidebar-dropdown')) {
+        //       $(`#${id}`).toggleClass('sidebar-dropdown-open')
+        //       }
+
+
+        //     }
+
+        //     $('#foodDrinksDogs').click(() => {
+        //         $('#mapParams').toggle()
+                
+        //     });
+
+        //     $("#ohioCrime").click(() => {
+        //         $("#crimeParams").toggle()
+        //     })
+
+        
+        </script> -->
+    </body>
+</html>

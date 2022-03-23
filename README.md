@@ -1,4 +1,4 @@
-##### *COMING SOON: My very first blog post, covering this topic! :)*
+###### *COMING SOON: My very first blog post, where I will cover this project - with additional code annotations and examples!*
 
 # Tableau Viz Portal using the JavaScript API
 ##### *IMPORTANT: This code is for demonstration purposes only and is not suitable for a production environment. See NOTES at the bottom of this readme*
